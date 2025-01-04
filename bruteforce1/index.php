@@ -9,26 +9,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // // Đọc file publicKey.pem
-    // $publicKey = file_get_contents('publicKey.pem');
-    // if ($publicKey === false) {
-    //     die("Không thể đọc file publicKey.pem.");
-    // }
-
-    // // Hàm mã hóa RSA
-    // function encryptRSA($data, $publicKey) {
-    //     openssl_public_encrypt($data, $encryptedData, $publicKey);
-    //     return base64_encode($encryptedData);
-    // }
-
-    // // Mã hóa username và password
-    // $encryptedUsername = trim(encryptRSA($username, $publicKey));
-    // $encryptedPassword = trim(encryptRSA($password, $publicKey));
-    // echo($encryptedUsername);
-    // echo"\n";
-    // echo(ENCODED_USERNAME);
-    // echo"\n";
-
     $hash_username = hash('sha256',$username);
     $hash_password = hash('sha256',$password);
 
