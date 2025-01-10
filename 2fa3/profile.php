@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['user'])) {
-    header('Location: index.php');
-    exit();
-}
+// if (!isset($_SESSION['user']) || !isset($_COOKIE['2fa_token'])) {
+//     header('Location: index.php');
+//     exit();
+// }
 
 $username = $_SESSION['user'];
 $users = json_decode(file_get_contents('users.json'), true);
@@ -12,6 +12,7 @@ $email = $users[$username]['email'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['logout'])) {
     session_destroy();
+    setcookie('2fa_token', '', time() - 3600, "/"); // Clear the token cookie
     header('Location: index.php');
     exit();
 }

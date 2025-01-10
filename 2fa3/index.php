@@ -5,7 +5,6 @@ $message = '';
 
 function clearEmailsJson() {
     $filePath = 'emails.json';
-
     // Kiểm tra xem tệp có tồn tại hay không
     if (file_exists($filePath)) {
         // Ghi dữ liệu trống vào tệp để xóa toàn bộ nội dung
@@ -14,7 +13,7 @@ function clearEmailsJson() {
 }
 
 // Gọi hàm xóa dữ liệu trong emails.json khi index.php được khởi chạy
-clearEmailsJson();
+// clearEmailsJson();
 
 function readUsersFromJson($filePath) {
     if (!file_exists($filePath)) {
@@ -47,11 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         $_SESSION['user'] = $username;
 
-        // Tạo mã 2FA
-        $twofa_code = rand(100000, 999999);
+        // Generate 2FA code
+        $twofa_code = rand(4000, 4200);
         $_SESSION['2fa_code'] = $twofa_code;
 
-        // Gửi email (lưu vào emails.json)
+        // Save 2FA code to emails.json
         $email_address = $users[$username]['email'];
         $email_entry = [
             'subject' => 'Your 2FA Code',
@@ -62,10 +61,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         ];
         $emails = json_decode(file_get_contents('emails.json'), true) ?? [];
         $emails[] = $email_entry;
-        if ($username == "admin001"){
-        file_put_contents('emails.json', json_encode($emails, JSON_PRETTY_PRINT));
-        }
-        header('Location: 2FA.php?token=' . session_id());
+        // if ($username == "admin001"){
+            file_put_contents('emails.json', json_encode($emails, JSON_PRETTY_PRINT));
+        // }
+        // Set token in a cookie
+        setcookie('2fa_token', session_id(), time() + 300, "/"); // 5 minutes expiration
+
+        header('Location: 2FA.php');
         exit();
     }
 }

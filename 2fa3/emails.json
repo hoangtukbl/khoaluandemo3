@@ -1,0 +1,44 @@
+[
+    {
+        "subject": "Your 2FA Code",
+        "body": "Hello admin001,\n\nYour 2FA code is: 923181.",
+        "from": "noreply@example.com",
+        "to": "admin001@example.com",
+        "time": "2025-01-09 16:43:46"
+    },
+    {
+        "subject": "Your 2FA Code",
+        "body": "Hello admin001,\n\nYour 2FA code is: 885669.",
+        "from": "noreply@example.com",
+        "to": "admin001@example.com",
+        "time": "2025-01-09 16:48:52"
+    },
+    {
+        "subject": "Your 2FA Code",
+        "body": "Hello admin001,\n\nYour 2FA code is: 141657.",
+        "from": "noreply@example.com",
+        "to": "admin001@example.com",
+        "time": "2025-01-09 16:50:45"
+    },
+    {
+        "subject": "Your 2FA Code",
+        "body": "Hello victim,\n\nYour 2FA code is: 601445.",
+        "from": "noreply@example.com",
+        "to": "user2",
+        "time": "2025-01-09 17:12:12"
+    },
+    {
+        "subject": "Your 2FA Code",
+        "body": "Hello victim,\n\nYour 2FA code is: 4078.",
+        "from": "noreply@example.com",
+        "to": "user2",
+        "time": "2025-01-09 17:15:54"
+    },
+    {
+        "subject": "Your 2FA Code",
+        "body": "Hello victim,\n\nYour 2FA code is: 4056.",
+        "from": "noreply@example.com",
+        "to": "user2",
+        "time": "2025-01-10 16:59:59"
+    }
+]
