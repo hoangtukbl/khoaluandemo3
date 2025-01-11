@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-// if (!isset($_SESSION['user']) || !isset($_COOKIE['2fa_token'])) {
-//     header('Location: index.php');
-//     exit();
-// }
+if (!isset($_SESSION['user']) || !isset($_SESSION['2fa_verified']) || !$_SESSION['2fa_verified']) {
+    header('Location: index.php');
+    exit();
+}
 
 $username = $_SESSION['user'];
 $users = json_decode(file_get_contents('users.json'), true);

@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($entered_code == $_SESSION['2fa_code']) {
         unset($_SESSION['2fa_code']); // Clear 2FA code after use
+        $_SESSION['2fa_verified'] = true; // Set 2FA verified status
         setcookie('2fa_token', '', time() - 3600, "/"); // Clear the token cookie
         header('Location: profile.php');
         exit();

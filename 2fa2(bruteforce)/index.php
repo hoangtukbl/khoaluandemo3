@@ -13,7 +13,7 @@ function clearEmailsJson() {
 }
 
 // Gọi hàm xóa dữ liệu trong emails.json khi index.php được khởi chạy
-// clearEmailsJson();
+clearEmailsJson();
 
 function readUsersFromJson($filePath) {
     if (!file_exists($filePath)) {
