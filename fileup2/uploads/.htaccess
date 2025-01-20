@@ -1,0 +1,12 @@
+# Chặn truy cập trực tiếp vào thư mục
+Options -Indexes
+
+<Files "secret">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Cho phép truy cập đến các tệp hình ảnh cụ thể
+<FilesMatch "\.(jpg|jpeg|png|gif|php)$">
+    Require all granted
+</FilesMatch>
