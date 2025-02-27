@@ -1,1 +1,9 @@
-[]
+[
+    {
+        "subject": "Your 2FA Code",
+        "body": "Hello victim,\n\nYour 2FA code is: 4162.",
+        "from": "noreply@example.com",
+        "to": "user2",
+        "time": "2025-01-12 05:09:34"
+    }
+]

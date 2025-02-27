@@ -1,0 +1,8 @@
+
+wordlist:
+https://github.com/fuzzdb-project/fuzzdb
+https://github.com/danielmiessler/SecLists
+
+
+tools:
+https://github.com/OJ/gobuster/releases

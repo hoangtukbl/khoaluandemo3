@@ -1,0 +1,104 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f5;
+    color: #333;
+}
+
+/* Carousel Styles */
+.carousel-item img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.carousel-caption h3 {
+    font-size: 2.5rem;
+    color: #fff;
+}
+
+.carousel-caption p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+.team-section {
+    padding: 60px 0;
+    text-align: center;
+    background-color: #e2e6f0;
+}
+
+.team-section h2 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.team-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.gallery-item {
+    flex-basis: calc(33.333% - 20px);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.1);
+}
+
+.gallery-item h3 {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    color: #fff;
+    font-size: 1.5rem;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* Timeline Section */
+.list-group-item {
+    background-color: #f9f9fc;
+    border-color: #ddd;
+}
+
+.list-group-item:hover {
+    background-color: #eaeaff;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    padding: 15px;
+    background-color: #000;
+}
