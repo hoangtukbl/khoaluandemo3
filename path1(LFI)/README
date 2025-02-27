@@ -1,0 +1,74 @@
+# README
+
+## Cách chạy website bằng Dockerfile
+
+1. Mở terminal và điều hướng đến thư mục chứa Dockerfile.
+2. Xây dựng Docker image từ Dockerfile:
+    ```sh
+    docker build -t my_flask_app .
+    ```
+3. Chạy Docker container từ image vừa tạo:
+    ```sh
+    docker run -d -p 5000:5000 my_flask_app
+    ```
+4. Truy cập website tại địa chỉ: `http://localhost:5000`
+
+## Kịch bản tấn công để lấy thông điệp trong flag.txt
+
+Phân tích
+    1.Ứng dụng Flask:
+        Ứng dụng Flask này có một endpoint / mà nhận tham số page từ query string.
+        Tham số page được nối với đường dẫn ./pages/ và sau đó được kiểm tra xem có tồn tại hay không.
+        Nếu tệp tồn tại, nó sẽ được gửi về cho người dùng.
+
+    2.Lỗ hổng LFI:
+        Do tham số page không được kiểm tra kỹ lưỡng, kẻ tấn công có thể lợi dụng để truy cập các tệp tin nhạy cảm trên hệ thống.
+
+Kịch bản tấn công
+    1.Truy cập tệp flag.txt:
+        Chúng ta có thể lợi dụng lỗ hổng LFI để truy cập tệp flag.txt nằm ở thư mục gốc của container Docker.
+        URL tấn công: http://recruit.osiris.cyber.nyu.edu:2001/?page=../../flag.txt
+
+## Giới thiệu về lỗ hổng LFI
+Lỗ hổng Local File Inclusion (LFI) là một lỗ hổng bảo mật web cho phép kẻ tấn công chèn các tệp cục bộ của máy chủ vào ứng dụng web. Điều này có thể dẫn đến việc tiết lộ thông tin nhạy cảm, thực thi mã độc, hoặc leo thang đặc quyền. LFI thường xảy ra khi ứng dụng web không kiểm tra hoặc lọc đầu vào của người dùng một cách đúng đắn trước khi sử dụng nó để xây dựng đường dẫn tệp.
+
+Cách thức hoạt động của LFI
+    1.Ứng dụng web nhận đầu vào từ người dùng:
+        Ứng dụng web có thể nhận một tham số từ người dùng để xác định tệp nào sẽ được bao gồm hoặc hiển thị.
+    
+    2.Đầu vào không được kiểm tra kỹ lưỡng:
+        Nếu đầu vào này không được kiểm tra hoặc lọc đúng cách, kẻ tấn công có thể chèn các đường dẫn tệp tùy ý.
+    
+    3.Bao gồm tệp cục bộ:
+        Ứng dụng web sử dụng đầu vào của người dùng để xây dựng đường dẫn tệp và bao gồm tệp đó vào trang web. Nếu đường dẫn này trỏ đến một tệp cục bộ nhạy cảm, nội dung của tệp đó sẽ được hiển thị cho kẻ tấn công.
+### Cách bảo mật lỗ hổng LFI
+
+1. **Kiểm tra và lọc đầu vào của người dùng**: Đảm bảo rằng chỉ những giá trị hợp lệ mới được chấp nhận.
+2. **Sử dụng các hàm an toàn**: Tránh sử dụng các hàm có thể dẫn đến LFI, hoặc sử dụng các hàm có khả năng kiểm tra và lọc đầu vào.
+3. **Giới hạn quyền truy cập file**: Đảm bảo rằng ứng dụng chỉ có quyền truy cập vào những file cần thiết.
+4. **Sử dụng whitelist**: Chỉ cho phép truy cập đến những file nằm trong danh sách trắng (whitelist).
+
+\```python
+from flask import Flask, request, send_file, abort
+import os.path
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def index():
+    if 'page' in request.args:
+        page = request.args['page']
+        # Chỉ cho phép các tệp trong thư mục ./pages/
+        if '..' in page or page.startswith('/'):
+            abort(400)
+    else:
+        page = 'index.html'
+    page = os.path.join('./pages', page)
+    if not os.path.isfile(page):
+        abort(404)
+
+    return send_file(page)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
+\```
