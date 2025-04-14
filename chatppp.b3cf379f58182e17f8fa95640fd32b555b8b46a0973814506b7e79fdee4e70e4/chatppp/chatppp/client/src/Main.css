@@ -1,0 +1,51 @@
+
+.main {
+    .main-content {
+        display: grid;
+        grid-template:
+            "sidebar chat  " minmax(0, 1fr)
+            / max-content minmax(0, 1fr);
+        row-gap: 1rem;
+        column-gap: 0.5rem;
+        height: 100%;
+
+        .sidebar {
+            grid-area: sidebar;
+            font-family: Rye;
+            display: flex;
+            flex-direction: column;
+
+            .conversation-list {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+
+                .conversation-list-item {
+                    font-size: 1.25rem;
+                    cursor: pointer;
+                    color: var(--color-primary);
+                    padding: 0.5rem;
+                    border-radius: 0.25rem;
+
+                    &:hover {
+                        background-color: rgba(0, 0, 0, 0.3);
+                    }
+
+                    &.add-conversation {
+                        font-style: italic;
+                    }
+                }
+            }
+        }
+
+        .chat-box {
+            grid-area: chat;
+        }
+
+        .settings {
+            position: absolute;
+            bottom: 4rem;
+            left: 4rem;
+        }
+    }
+}

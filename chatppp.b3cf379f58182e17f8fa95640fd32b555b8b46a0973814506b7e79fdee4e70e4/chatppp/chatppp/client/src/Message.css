@@ -1,0 +1,46 @@
+.chat-message {
+    display: grid;
+    grid-template:
+        "message  " max-content
+        "timestamp" max-content
+        / minmax(0, 1fr);
+    row-gap: 0.5rem;
+    position: relative;
+    grid-column: 1 / -2;
+
+    &:hover {
+        .message-actions {
+            opacity: 1;
+        }
+    }
+
+    &[data-origin=user] {
+        justify-self: end;
+        color: var(--color-primary);
+        grid-column: 2 / -1;
+
+        .message-actions {
+            right: unset;
+            left: -2rem;
+        }
+    }
+
+    .message-time {
+        grid-area: timestamp;
+        font-size: 0.75rem;
+        opacity: 0.75;
+    }
+
+    .message-body {
+        grid-area: message;
+    }
+
+    .message-actions {
+        position: absolute;
+        top: 50%;
+        right: -1rem;
+        transform: translateY(-50%);
+        opacity: 0;
+        transition: opacity 200ms;
+    }
+}

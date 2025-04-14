@@ -1,0 +1,31 @@
+{
+    "name": "@chatppp/server",
+    "type": "module",
+    "devDependencies": {
+        "@types/body-parser": "^1",
+        "@types/express": "^4",
+        "body-parser": "^1.20.3",
+        "express": "^4.21.2",
+        "typescript": "^5.8.2"
+    },
+    "r": {
+        "server:build": "tsc",
+        "server:watch": "tsc -w",
+        "server:start": {
+            "script": "node dist/server.js",
+            "onExit": "restart",
+            "watch": [
+                "dist"
+            ]
+        },
+        "server": [
+            "r:server:watch",
+            "r:server:start"
+        ]
+    },
+    "dependencies": {
+        "node-fetch": "^3.3.2",
+        "puppeteer": "^24.6.0",
+        "sqlite3": "^5.1.7"
+    }
+}

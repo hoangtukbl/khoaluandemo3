@@ -1,0 +1,7 @@
+.config-view {
+    .config-form {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

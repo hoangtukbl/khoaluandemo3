@@ -1,0 +1,84 @@
+.poster {
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    height: 100%;
+    background-color: #5e1e09;
+
+    .poster-content {
+        margin: 2rem;
+        padding: 2rem;
+        width: 100%;
+        background-color: #f9cc78;
+        box-shadow:
+            inset 0 0 2rem rgba(123, 66, 19, 50%),
+            2px 4px 8px 2px rgba(0, 0, 0, 20%);
+        display: grid;
+        grid-template:
+            "header" max-content
+            "body  " minmax(0, 1fr)
+            "title " max-content
+            / minmax(0, 1fr);
+        row-gap: 1rem;
+        column-gap: 0.5rem;
+
+        .poster-header {
+            grid-area: header;
+            font-size: 4rem;
+            text-align: center;
+            font-family: "Ewert";
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+
+            .thumbtack {
+                width: 2rem;
+                height: 2rem;
+                position: relative;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    background-color: #413e3c;
+                    box-shadow:
+                        inset 0 0 0.2rem 0.2rem rgba(0, 0, 0, 0.3),
+                        0 0 0.1rem 0 rgba(0, 0, 0, 0.3);
+                }
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 30%;
+                    left: 30%;
+                    width: 25%;
+                    height: 25%;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.5);
+                    box-shadow: 0 0 0.25rem 0.25rem rgba(255, 255, 255, 0.5);
+                }
+            }
+
+            .poster-header-content {
+                display: flex;
+                flex-direction: row;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+
+        .poster-body {
+            grid-area: body;
+        }
+
+        .poster-title {
+            grid-area: title;
+            font-size: 2rem;
+            text-align: center;
+        }
+    }
+}

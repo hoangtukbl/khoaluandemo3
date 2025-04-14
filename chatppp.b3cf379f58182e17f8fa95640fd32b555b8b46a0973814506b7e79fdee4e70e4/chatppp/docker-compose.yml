@@ -1,0 +1,16 @@
+services:
+  app:
+    image: chatppp-server
+    build:
+      context: .
+      dockerfile: ./docker/server.dockerfile
+      platforms:
+      - "linux/amd64"
+    restart:
+      always
+    environment:
+      - FLAG=${CHATPPP_FLAG:-PCTF{TEST_FLAG}}
+      - BASE_URL=${BASE_URL:-https://localhost:3030}
+      - OPENAI_KEY=${OPENAI_KEY}
+    ports:
+      - "8080:3030"

@@ -1,0 +1,17 @@
+.markdown-res {
+    .md-bold, .md-italic, .md-code {
+        display: inline-block;
+    }
+
+    .md-bold {
+        font-size: 125%;
+    }
+
+    .md-italic {
+        font-style: italic;
+    }
+
+    .md-code {
+        font-family: monospace;
+    }
+}

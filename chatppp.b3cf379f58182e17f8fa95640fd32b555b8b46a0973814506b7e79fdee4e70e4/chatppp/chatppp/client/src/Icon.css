@@ -1,0 +1,19 @@
+.icon {
+    font-family: "Material Symbols Outlined";
+    width: attr(data-size rem, 1rem);
+    height: attr(data-size rem, 1rem);
+    font-size: calc(attr(data-size rem, 1rem) * 0.85);
+    border-radius: attr(data-size rem, 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &[data-has-click] {
+        cursor: pointer;
+        transition: background-color 200ms;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.3);
+        }
+    }
+}

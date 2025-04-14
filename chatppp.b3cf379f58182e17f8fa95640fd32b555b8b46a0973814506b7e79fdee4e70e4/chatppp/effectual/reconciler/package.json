@@ -1,0 +1,17 @@
+{
+    "name": "@effectualjs/reconciler",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "dist/index.mjs",
+    "types": "dist/index.d.mts",
+    "r": {
+        "reconciler:build": "tsc",
+        "reconciler:watch": "tsc -w"
+    },
+    "dependencies": {
+        "@effectualjs/utils": "workspace:*"
+    },
+    "devDependencies": {
+        "typescript": "^5.4.5"
+    }
+}
