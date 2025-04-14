@@ -1,0 +1,128 @@
+# CTF Web Challenge: SSTI Vulnerability
+
+## Overview
+
+This challenge involves a web application that is vulnerable to Server-Side Template Injection (SSTI). The goal is to exploit this vulnerability to retrieve the contents of `flag.txt` or `challenge.json`.
+
+## Running the Web Application
+
+To run the web application using Docker, follow these steps:
+
+1. Open a terminal in the directory containing the Dockerfile.
+2. Build the Docker image using the following command:
+    ```sh
+    docker build -t ctf_web_app .
+    ```
+3. Run the Docker container using the following command:
+    ```sh
+    docker run -d -p 5000:5000 ctf_web_app
+    ```
+
+This will start the web application, and you can access it at `http://localhost:5000`.
+
+## Exploiting the Vulnerability
+
+The web application has an SSTI vulnerability. To exploit it and retrieve the contents of [flag.txt](http://_vscodecontentref_/0), follow these steps:
+
+1. Access the web application at `http://localhost:5000`.
+2. In the input field for "Name", enter the following payload:
+    ```
+    {{ config.__class__.__init__.__globals__['os'].popen('cat /flag.txt').read() }}
+    ```
+3. Click "Say Hi!".
+
+This payload exploits the SSTI vulnerability to execute a command on the server that reads the contents of `flag.txt`. The response should display the flag.
+
+## What is SSTI?
+
+Server-Side Template Injection (SSTI) occurs when user input is embedded in a template in an unsafe manner, allowing an attacker to inject and execute arbitrary code on the server. This can lead to remote code execution, data leakage, and other security issues.
+
+## Detailed Explanation of SSTI
+
+### How SSTI Works
+
+SSTI occurs when a web application incorporates user input into a server-side template in an insecure manner. Templates are used to dynamically generate HTML, emails, or other text-based formats. When user input is not properly sanitized, it can be used to inject malicious code into the template, which is then executed on the server.
+
+### Common Template Engines
+
+Different web frameworks use different template engines, and each has its own syntax and features. Some common template engines include:
+- **Jinja2** (Python)
+- **Twig** (PHP)
+- **Freemarker** (Java)
+- **Handlebars** (JavaScript)
+
+### Example of Vulnerable Code
+
+Here is an example of vulnerable code using the Jinja2 template engine in Python:
+
+```python
+from flask import Flask, request, render_template_string
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    name = request.args.get('name', '')
+    template = f"Hello {name}!"
+    return render_template_string(template)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+In this example, the `name` parameter is directly embedded into the template without any sanitization, making it vulnerable to SSTI.
+
+### Exploiting SSTI
+
+To exploit SSTI, an attacker can craft a payload that takes advantage of the template engine's features to execute arbitrary code. For example, in Jinja2, an attacker might use the following payload to execute a command:
+
+```
+{{ config.__class__.__init__.__globals__['os'].popen('cat /etc/passwd').read() }}
+```
+
+When this payload is processed by the template engine, it executes the `cat /etc/passwd` command on the server and returns the contents of the `/etc/passwd` file.
+
+### Mitigation Strategies
+
+To prevent SSTI vulnerabilities, consider the following strategies:
+- **Input Validation and Sanitization**: Ensure that user input is properly validated and sanitized before being used in templates.
+- **Use Safe Substitutions**: Use safe methods provided by the template engine to insert user input into templates.
+- **Template Engine Configuration**: Configure the template engine to disable or restrict features that can be exploited for code execution.
+- **Security Testing**: Regularly test your application for SSTI vulnerabilities using automated tools and manual testing.
+
+By following these best practices, you can reduce the risk of SSTI vulnerabilities in your web applications.
+
+## Thách thức CTF Web: Lỗ hổng SSTI
+
+## Tổng quan
+
+Thách thức này liên quan đến một ứng dụng web có lỗ hổng Server-Side Template Injection (SSTI). Mục tiêu là khai thác lỗ hổng này để lấy nội dung của `flag.txt` hoặc `challenge.json`.
+
+## Chạy ứng dụng web
+
+Để chạy ứng dụng web bằng Docker, hãy làm theo các bước sau:
+
+1. Mở terminal trong thư mục chứa Dockerfile.
+2. Xây dựng hình ảnh Docker bằng lệnh sau:
+    ```sh
+    docker build -t ctf_web_app .
+    ```
+3. Chạy container Docker bằng lệnh sau:
+    ```sh
+    docker run -d -p 5000:5000 ctf_web_app
+    ```
+
+Điều này sẽ khởi động ứng dụng web, và bạn có thể truy cập nó tại `http://localhost:5000`.
+
+## Khai thác lỗ hổng
+
+Ứng dụng web có lỗ hổng SSTI. Để khai thác nó và lấy nội dung của [flag.txt](http://_vscodecontentref_/0), hãy làm theo các bước sau:
+
+1. Truy cập ứng dụng web tại `http://localhost:5000`.
+2. Trong trường nhập "Name", nhập payload sau:
+    ```
+    {{ config.__class__.__init__.__globals__['os'].popen('cat /flag.txt').read() }}
+    ```
+3. Nhấn "Say Hi!".
+
+Payload này khai thác lỗ hổng SSTI để thực thi lệnh trên máy chủ đọc nội dung của `flag.txt`. Phản hồi sẽ hiển thị

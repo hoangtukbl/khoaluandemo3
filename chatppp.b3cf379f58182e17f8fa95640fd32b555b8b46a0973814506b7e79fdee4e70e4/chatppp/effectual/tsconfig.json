@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "esModuleInterop": true,
+        "composite": true,
+        "module": "NodeNext",
+        "target": "ESNext",
+        "declaration": true,
+        "sourceMap": true,
+        "lib": ["esnext.decorators", "ES2022", "DOM"],
+        "moduleResolution": "nodenext",
+        "rootDirs": ["utils", "reconciler", "core"]
+    },
+    "references": [{ "path": "./utils" }, { "path": "./reconciler" }, { "path": "./core" }]
+}
