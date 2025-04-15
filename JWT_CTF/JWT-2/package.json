@@ -1,0 +1,14 @@
+{
+    "name": "jwt-rs256-confusion",
+    "version": "1.0.0",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "cookie-parser": "^1.4.6",
+      "express": "^4.18.2",
+      "jsonwebtoken": "^9.0.0"
+    }
+  }
+  
