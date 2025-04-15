@@ -1,0 +1,5 @@
+emails.json
+tokens.json
+*.log
+node_modules
+vendor
